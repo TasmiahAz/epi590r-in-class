@@ -50,4 +50,11 @@ tbl_summary(nlsy,
 	# add a total column with the number of observations
 	add_overall(col_label = "**Total** N = {N}")
 
-#For the income variable, showing the 10th and 90th percentiles of income with 3 digits, and for the sleep variables, showing the min and the max with 1 digit.
+#Ex 5: For the income variable, showing the 10th and 90th percentiles of income with 3 digits, and for the sleep variables, showing the min and the max with 1 digit.
+tbl_summary(nlsy,
+						by = sex_cat,
+						include = c(region_cat, race_eth_cat, income, starts_with("sleep")),
+						label = list(region_cat ~ "Region", race_eth_cat ~ "Race/Ethnicity", income ~ "Income", sleep_wkdy ~ "Sleep Weekday", sleep_wknd ~ "Sleep Weekend"),
+statistic = list(starts_with("sleep") ~ "min = {min}; max = {max}",
+								 income = "({p10} to {p90})"),
+digits = list(starts_with("sleep")~c(1,1), income~c(3,3)))

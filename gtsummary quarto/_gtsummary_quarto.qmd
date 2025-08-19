@@ -1,6 +1,8 @@
 ---
 title: "gtsummary in quarto"
 format: html
+execute: 
+  echo: false
 ---
 
 ```{r}
@@ -45,4 +47,12 @@ tbl_summary(
     age_bir ~ "Age at first birth"
   ),
   missing_text = "Missing")
+```
+
+```{r}
+tbl_summary(
+ nlsy,
+  by = sex_cat,
+  include = c(sex_cat, race_eth_cat, region_cat,
+              eyesight_cat, glasses, age_bir))
 ```

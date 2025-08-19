@@ -50,9 +50,64 @@ tbl_summary(
 ```
 
 ```{r}
+#| label: tbl-sex
+#| tbl-cap: "Descriptive statistics by sex"
 tbl_summary(
  nlsy,
   by = sex_cat,
   include = c(sex_cat, race_eth_cat, region_cat,
               eyesight_cat, glasses, age_bir))
+```
+
+The descriptive statistics are shown stratified by sex @tbl-sex
+
+```{r}
+mean_sleep_weekend <- mean(nlsy$sleep_wknd, na.rm = TRUE)
+mean_sleep_weekend
+```
+
+people slept an average of `r mean_sleep_weekend` hours
+
+```{r}
+#| label: tbl-one
+#| tbl-cap: "This is a great table"
+knitr::kable(mtcars)
+```
+
+```{r}
+#| label: fig-hist
+#| fig-cap: "This is a histogram"
+hist(rnorm(100))
+```
+
+Cross-referencing
+
+@tbl-one contains table ans @fig-hist contains histogram
+
+InlineR
+
+`r 10+5` things to do
+
+`r nrow(nlsy)` participants
+
+```{r}
+total_sample <- nrow(nlsy)
+```
+
+there were `r total_sample` participants
+
+```{r}
+stats <- list(n = nrow(nlsy),
+              mean_age = mean(nlsy$age_bir, na.rm = TRUE))
+stats 
+```
+
+There were `` `r stats$n` `` participants with a mean age of `` `r stats$mean_age` ``.
+
+`r mean(nlsy$age_bir, na.rm = TRUE)` is the mean
+
+`r median(nlsy$age_bir, na.rm = TRUE)` is the median
+
+```{r}
+library(gtsummary)
 ```
